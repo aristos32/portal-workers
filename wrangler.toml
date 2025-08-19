@@ -1,4 +1,4 @@
-name = "vue-with-middleware"
+name = "portal-workers"
 main = "worker.js"
 compatibility_date = "2025-08-19"
 
