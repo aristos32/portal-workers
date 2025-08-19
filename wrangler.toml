@@ -1,0 +1,6 @@
+name = "vue-with-middleware"
+main = "worker.js"
+compatibility_date = "2025-08-19"
+
+[site]
+bucket = "./dist"   # Vue build output
