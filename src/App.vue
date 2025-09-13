@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import Example from "./@webcomponents/Example.vue";
+
 import { ref } from "vue";
 
 const name = ref("Unknown");
@@ -23,7 +25,8 @@ const getName = async () => {
     />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it 65!" />
+      <Example />
+      <!-- <HelloWorld msg="You did it 65!" /> -->
       <button class="green" @click="getName" aria-label="get name">
         Name from API is: {{ name }}
       </button>
