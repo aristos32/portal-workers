@@ -12,9 +12,26 @@ export default {
     // Serve web component library
     if (url.pathname === "/webcomponents.js") {
       try {
-        const file = await env.WEBCOMPONENTS.get("webcomponents.es.js");
-        if (file) {
-          return new Response(file.body, {
+        // Try to get from WEBCOMPONENTS binding first
+        if (env.WEBCOMPONENTS && typeof env.WEBCOMPONENTS.get === "function") {
+          const file = await env.WEBCOMPONENTS.get("webcomponents.es.js");
+          if (file) {
+            return new Response(file.body, {
+              headers: {
+                "Content-Type": "application/javascript",
+                "Access-Control-Allow-Origin": "*",
+                "Cache-Control": "public, max-age=31536000",
+              },
+            });
+          }
+        }
+
+        // Fallback: serve from static assets
+        const response = await fetch(
+          "https://portal-workers.aristos-aresti.workers.dev/webcomponents.js"
+        );
+        if (response.ok) {
+          return new Response(response.body, {
             headers: {
               "Content-Type": "application/javascript",
               "Access-Control-Allow-Origin": "*",

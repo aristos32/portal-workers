@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Web Components Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .test-section {
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Local Web Components Test</h1>
+    <p>This page tests your web components locally using the built files.</p>
+
+    <div class="test-section">
+      <h2>Example Web Component</h2>
+      <example-webcomponent></example-webcomponent>
+    </div>
+
+    <div class="test-section">
+      <h2>Multiple Instances</h2>
+      <example-webcomponent></example-webcomponent>
+      <example-webcomponent></example-webcomponent>
+      <example-webcomponent></example-webcomponent>
+    </div>
+
+    <script type="module">
+      // Import the web component library from the built files
+      import "./dist-webcomponent/webcomponents.es.js";
+
+      console.log("Web components loaded successfully!");
+    </script>
+  </body>
+</html>

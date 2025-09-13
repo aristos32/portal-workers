@@ -15,12 +15,9 @@ export default defineConfig({
       fileName: (format) => `webcomponents.${format}.js`,
     },
     rollupOptions: {
-      external: ["vue"],
+      external: [],
       output: {
         exports: "named",
-        globals: {
-          vue: "Vue",
-        },
       },
     },
     outDir: "dist-webcomponent",
