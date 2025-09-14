@@ -2,10 +2,14 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import Example from "./@webcomponents/Example.vue";
+import AlertBox from "./@webcomponents/AlertBox.vue";
+import Tabs from "./@webcomponents/Tabs.vue";
 
 import { ref } from "vue";
 
 const name = ref("Unknown");
+
+const fontSize = ref(36);
 
 const getName = async () => {
   const res = await fetch("/api/");
@@ -15,6 +19,7 @@ const getName = async () => {
 </script>
 
 <template>
+  <Tabs />
   <header>
     <img
       alt="Vue logo"
@@ -23,20 +28,28 @@ const getName = async () => {
       width="125"
       height="125"
     />
-
-    <div class="wrapper">
-      <Example />
-      <!-- <HelloWorld msg="You did it 65!" /> -->
-      <button class="green" @click="getName" aria-label="get name">
-        Name from API is: {{ name }}
-      </button>
-      <p>Edit <code>server/index.ts</code> to change what the API gets</p>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
   </header>
+
+  <div class="wrapper">
+    <div :style="{ fontSize: `${fontSize}px` }">
+      <Example
+        title="This is a title"
+        description="You did it 65!"
+        :isValid="true"
+        @new-font-size="fontSize = $event"
+      />
+    </div>
+    <AlertBox> something bad happended </AlertBox>
+    <!-- <HelloWorld msg="You did it 65!" /> -->
+    <button class="green" @click="getName" aria-label="get name">
+      Name from API is: {{ name }}
+    </button>
+    <p>Edit <code>server/index.ts</code> to change what the API gets</p>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+    </nav>
+  </div>
 
   <RouterView />
 </template>
