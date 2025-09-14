@@ -30,7 +30,7 @@ const tabs = {
 <style>
 .demo {
   font-family: sans-serif;
-  border: 1px solid #eee;
+  border: 10px solid red;
   border-radius: 2px;
   padding: 20px 30px;
   margin-top: 1em;
@@ -40,11 +40,11 @@ const tabs = {
 }
 
 .tab-button {
+  cursor: pointer;
   padding: 6px 10px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  border: 1px solid #ccc;
-  cursor: pointer;
+  border: 3px dotted #43a147;
   background: #f0f0f0;
   margin-bottom: -1px;
   margin-right: -1px;
