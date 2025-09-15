@@ -26,19 +26,13 @@ export default {
           }
         }
 
-        // Fallback: serve from static assets
-        const response = await fetch(
-          "https://portal-workers.aristos-aresti.workers.dev/webcomponents.js"
-        );
-        if (response.ok) {
-          return new Response(response.body, {
-            headers: {
-              "Content-Type": "application/javascript",
-              "Access-Control-Allow-Origin": "*",
-              "Cache-Control": "public, max-age=31536000",
-            },
-          });
-        }
+        // Fallback: return 404 if not found in binding
+        return new Response("Web components not found", {
+          status: 404,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
       } catch (error) {
         console.error("Error serving web component library:", error);
       }
