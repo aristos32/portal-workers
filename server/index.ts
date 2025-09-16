@@ -11,35 +11,54 @@ export default {
 
     // Serve web component library
     if (url.pathname === "/webcomponents.js") {
+      console.log("Serving web component library");
       try {
         // Try to get from WEBCOMPONENTS binding first
-        if (env.WEBCOMPONENTS && typeof env.WEBCOMPONENTS.get === "function") {
-          const file = await env.WEBCOMPONENTS.get("webcomponents.es.js");
-          if (file) {
-            return new Response(file.body, {
-              headers: {
-                "Content-Type": "application/javascript",
-                "Access-Control-Allow-Origin": "*",
-                "Cache-Control": "public, max-age=31536000",
-              },
-            });
+        if (env.WEBCOMPONENTS) {
+          try {
+            const file = await env.WEBCOMPONENTS.get("webcomponents.es.js");
+            if (file) {
+              return new Response(file.body, {
+                headers: {
+                  "Content-Type": "application/javascript",
+                  "Access-Control-Allow-Origin": "*",
+                  "Cache-Control": "public, max-age=31536000",
+                },
+              });
+            }
+          } catch (bindingError) {
+            console.log(
+              "WEBCOMPONENTS binding not available in dev mode:",
+              bindingError.message
+            );
           }
         }
 
         // Fallback: return 404 if not found in binding
-        return new Response("Web components not found", {
-          status: 404,
+        return new Response(
+          "Web components not found - please deploy to production",
+          {
+            status: 404,
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
+      } catch (error) {
+        console.error("Error serving web component library:", error);
+        return new Response("Internal server error", {
+          status: 500,
           headers: {
             "Access-Control-Allow-Origin": "*",
           },
         });
-      } catch (error) {
-        console.error("Error serving web component library:", error);
       }
     }
 
     // Serve demo page
     if (url.pathname === "/demo.html") {
+      console.log("Serving demo page");
+
       const demoHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>

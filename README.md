@@ -45,7 +45,7 @@ npm run build:webcomponent
 python3 -m http.server 8080
 
 # Test your components
-# Open: http://localhost:8080/test-webcomponents.html
+Open: http://localhost:8080/test-webcomponents.html
 ```
 
 **Option B: Wrangler Dev (Advanced)**
@@ -54,7 +54,7 @@ python3 -m http.server 8080
 # Start Cloudflare Workers dev server
 npm run preview
 
-# Test at: http://localhost:8787/demo.html
+Test at: http://localhost:8787/demo.html
 # Note: May have asset binding issues in dev mode
 ```
 
@@ -134,7 +134,7 @@ npm run deploy
     <!-- Include the library -->
     <script
       type="module"
-      src="https://portal-workers.aristos-aresti.workers.dev/webcomponents.js"
+      src="https://portal-workers.aristos-aresti.workers.dev/webcomponents.es.js"
     ></script>
   </body>
 </html>

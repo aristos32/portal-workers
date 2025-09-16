@@ -9,8 +9,7 @@
   "main": "server/index.ts",
   "assets": {
     "directory": "./dist-webcomponent",
-    "binding": "WEBCOMPONENTS",
-    "not_found_handling": "single-page-application"
+    "binding": "WEBCOMPONENTS"
   },
   "observability": {
     "enabled": true
