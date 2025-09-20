@@ -9,7 +9,9 @@ export default {
       });
     }
 
-    // Serve web component library
+
+    console.log("Serving web component library");
+        // Serve web component library
     if (url.pathname === "/webcomponents.js" || url.pathname === "/webcomponents.es.js") {
       console.log("Serving web component library");
       try {
@@ -29,7 +31,7 @@ export default {
           } catch (bindingError) {
             console.log(
               "WEBCOMPONENTS binding not available in dev mode:",
-              bindingError.message
+              bindingError instanceof Error ? bindingError.message : String(bindingError)
             );
           }
         }
