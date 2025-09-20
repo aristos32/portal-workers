@@ -10,7 +10,7 @@ export default {
     }
 
     // Serve web component library
-    if (url.pathname === "/webcomponents.js") {
+    if (url.pathname === "/webcomponents.js" || url.pathname === "/webcomponents.es.js") {
       console.log("Serving web component library");
       try {
         // Try to get from WEBCOMPONENTS binding first
