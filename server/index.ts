@@ -13,16 +13,17 @@ export default {
     console.log("Serving web component library");
         // Serve web component library
     if (url.pathname === "/webcomponents.js" || url.pathname === "/webcomponents.es.js") {
-      console.log("Serving web component library");
       try {
         // Try to get from WEBCOMPONENTS binding first
         if (env.WEBCOMPONENTS) {
           try {
-            const file = await env.WEBCOMPONENTS.get("webcomponents.es.js");
+            const key = url.pathname;
+            console.log("Serving web component library key:", key);
+            const file = await env.WEBCOMPONENTS.get(key);
             if (file) {
               return new Response(file.body, {
                 headers: {
-                  "Content-Type": "application/javascript",
+                  "Content-Type": "application/javascript; charset=utf-8",
                   "Access-Control-Allow-Origin": "*",
                   "Cache-Control": "public, max-age=31536000",
                 },
